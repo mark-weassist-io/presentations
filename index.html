@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Dev — Monthly Recap &amp; Master Overview — June 2026</title>
+<style>
+  :root {
+    --bg-deep: #f8fafc; --bg-card: #ffffff; --bg-card-alt: #f1f5f9;
+    --border: #e2e8f0; --border-light: #cbd5e1;
+    --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #94a3b8;
+    --accent: #2563eb; --accent-soft: #1d4ed8; --accent-glow: rgba(37,99,235,0.12);
+    --red: #dc2626; --red-soft: rgba(220,38,38,0.08); --amber: #d97706; --amber-soft: rgba(217,119,6,0.08);
+    --green: #16a34a; --green-soft: rgba(22,163,74,0.08); --purple: #9333ea; --purple-soft: rgba(147,51,234,0.08);
+    --cyan: #0891b2; --cyan-soft: rgba(8,145,178,0.08);
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    --transition-fast: 0.2s cubic-bezier(0.4,0,0.2,1);
+    --transition-smooth: 0.35s cubic-bezier(0.4,0,0.2,1);
+    --transition-present: 0.5s cubic-bezier(0.22,1,0.36,1);
+    --font-sans: 'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font-sans); background:var(--bg-deep); color:var(--text-primary); overflow:hidden; height:100dvh; width:100dvw; user-select:none; }
+  .presentation { width:100%; height:100%; position:relative; }
+  .slide { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 64px; opacity:0; transform:translateX(60px); transition:opacity var(--transition-present),transform var(--transition-present); pointer-events:none; overflow:hidden; }
+  .slide.active { opacity:1; transform:translateX(0); pointer-events:all; }
+  .slide.exit-left { opacity:0; transform:translateX(-60px); }
+  .slide-nofade { transition:none !important; }
+  .slide-title { text-align:center; }
+  .slide-content { align-items:flex-start; justify-content:flex-start; padding-top:56px; }
+  .title-eyebrow { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.28em; color:var(--accent); margin-bottom:18px; font-weight:600; }
+  .title-main { font-size:clamp(2.2rem,5vw,3.2rem); font-weight:800; line-height:1.15; letter-spacing:-0.02em; margin-bottom:12px; }
+  .title-sub { font-size:1rem; color:var(--text-secondary); font-weight:400; letter-spacing:-0.01em; }
+  .title-accent-line { width:60px; height:3px; background:var(--accent); margin:28px auto; border-radius:2px; }
+  .section-header { margin-bottom:16px; width:100%; }
+  .section-eyebrow { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent); font-weight:600; margin-bottom:4px; }
+  .section-title { font-size:clamp(1.5rem,2.8vw,2rem); font-weight:700; letter-spacing:-0.02em; line-height:1.2; }
+  .section-rule { height:1px; background:var(--border); margin-top:8px; width:100%; }
+  .card-grid { display:grid; gap:12px; width:100%; }
+  .card-grid.cols-2 { grid-template-columns:1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+  .card-grid.cols-4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+  .card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px 18px; transition:border-color var(--transition-fast),box-shadow var(--transition-fast); box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+  .card:hover { border-color:var(--border-light); }
+  .card-accent { border-left:3px solid var(--accent); padding-left:22px; }
+  .card-red { border-left:3px solid var(--red); padding-left:22px; background:var(--red-soft); }
+  .card-amber { border-left:3px solid var(--amber); padding-left:22px; background:var(--amber-soft); }
+  .card-green { border-left:3px solid var(--green); padding-left:22px; background:var(--green-soft); }
+  .card-purple { border-left:3px solid var(--purple); padding-left:22px; background:var(--purple-soft); }
+  .card-cyan { border-left:3px solid var(--cyan); padding-left:22px; background:var(--cyan-soft); }
+  .card-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; margin-bottom:10px; }
+  .card-label.red { color:var(--red); } .card-label.amber { color:var(--amber); } .card-label.green { color:var(--green); }
+  .card-label.purple { color:var(--purple); } .card-label.cyan { color:var(--cyan); } .card-label.accent { color:var(--accent); }
+  .card-title { font-size:1.05rem; font-weight:700; margin-bottom:6px; line-height:1.3; }
+  .card-body { font-size:0.83rem; color:var(--text-secondary); line-height:1.5; }
+  .stat-row { display:flex; gap:20px; justify-content:center; margin:10px 0; flex-wrap:wrap; }
+  .stat-block { text-align:center; padding:12px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); min-width:130px; }
+  .stat-number { font-size:1.75rem; font-weight:800; letter-spacing:-0.03em; line-height:1; }
+  .stat-number.red { color:var(--red); } .stat-number.amber { color:var(--amber); } .stat-number.green { color:var(--green); } .stat-number.blue { color:var(--accent); }
+  .stat-label { font-size:0.73rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.1em; }
+  .bullet-list { list-style:none; display:flex; flex-direction:column; gap:8px; width:100%; }
+  .bullet-list li { padding-left:18px; position:relative; font-size:0.8rem; color:var(--text-secondary); line-height:1.45; }
+  .bullet-list li::before { content:''; position:absolute; left:0; top:7px; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  .bullet-list li.red::before { background:var(--red); } .bullet-list li.amber::before { background:var(--amber); } .bullet-list li.green::before { background:var(--green); }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; width:100%; margin-top:12px; }
+  .col h3 { font-size:0.92rem; font-weight:700; margin-bottom:10px; letter-spacing:-0.01em; }
+  .quote-block { background:var(--bg-card-alt); border:1px solid var(--border); border-radius:var(--radius-lg); padding:16px 24px; margin:12px 0; width:100%; position:relative; }
+  .quote-block::before { content:'"'; position:absolute; top:-6px; left:12px; font-size:3rem; color:var(--accent); opacity:0.15; line-height:1; }
+  .quote-text { font-size:0.83rem; color:var(--text-secondary); line-height:1.5; font-style:italic; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-right:6px; margin-bottom:4px; }
+  .badge.red { background:var(--red-soft); color:var(--red); } .badge.amber { background:var(--amber-soft); color:var(--amber); }
+  .badge.green { background:var(--green-soft); color:var(--green); } .badge.purple { background:var(--purple-soft); color:var(--purple); } .badge.cyan { background:var(--cyan-soft); color:var(--cyan); }
+  .mini-table { width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:10px; }
+  .mini-table th { text-align:left; padding:6px 10px; color:var(--text-muted); font-weight:600; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; border-bottom:1px solid var(--border); }
+  .mini-table td { padding:8px 10px; border-bottom:1px solid var(--border); color:var(--text-secondary); }
+  .nav { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; z-index:100; }
+  .nav-btn { background:var(--bg-card); border:1px solid var(--border); color:var(--text-primary); padding:8px 18px; border-radius:var(--radius-md); cursor:pointer; font-size:0.85rem; font-weight:600; transition:all var(--transition-fast); display:flex; align-items:center; gap:8px; }
+  .nav-btn:hover { background:var(--bg-card-alt); border-color:var(--accent); }
+  .nav-btn:disabled { opacity:0.3; cursor:not-allowed; pointer-events:none; }
+  .nav-dots { display:flex; gap:6px; }
+  .nav-dot { width:8px; height:8px; border-radius:50%; background:var(--border); transition:all var(--transition-fast); cursor:pointer; }
+  .nav-dot.active { background:var(--accent); width:24px; border-radius:4px; }
+  .nav-dot:hover { background:var(--text-muted); }
+  .nav-hint { font-size:0.72rem; color:var(--text-muted); position:fixed; bottom:72px; left:50%; transform:translateX(-50%); z-index:100; }
+  .progress-bar { position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--accent),#60a5fa); z-index:200; transition:width var(--transition-smooth); }
+  .roadmap-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; width:100%; margin-top:12px; }
+  @media (max-width:768px) { .slide { padding:32px 20px; } .card-grid.cols-2,.card-grid.cols-3,.card-grid.cols-4 { grid-template-columns:1fr; } .two-col { grid-template-columns:1fr; } .roadmap-row { grid-template-columns:1fr; } .stat-row { gap:10px; } .nav-btn { padding:8px 14px; font-size:0.78rem; } }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="presentation" id="presentation">
+
+  <!-- SLIDE 0: TITLE -->
+  <div class="slide slide-title active" data-index="0">
+    <div class="title-eyebrow">WeAssist Internal Team Meeting &bull; June 2026</div>
+    <div class="title-main">AI &amp; Dev Department<br>Monthly Recap &amp; Master Overview</div>
+    <div class="title-accent-line"></div>
+    <div class="title-sub">Presented by Mark Kenneth Badilla &amp; Ericleen Jr Jucal &bull; Reef on leave (returns ~June 10)</div>
+  </div>
+
+  <!-- SLIDE 1: ERIC'S AT A GLANCE / KEY HIGHLIGHTS -->
+  <div class="slide slide-content" data-index="1">
+    <div class="section-header">
+      <div class="section-eyebrow">March 2026 Recap — Eric</div>
+      <div class="section-title">At a Glance: What We Built</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-block"><div class="stat-number green">Autobot</div><div class="stat-label">Built From Scratch</div></div>
+      <div class="stat-block"><div class="stat-number blue">90+</div><div class="stat-label">OPs Monitored Via Automation</div></div>
+      <div class="stat-block"><div class="stat-number green">~120/mo</div><div class="stat-label">Hours Saved (Manual Uploads &rarr; Auto)</div></div>
+      <div class="stat-block"><div class="stat-number amber">Fireflies &rarr; Recall</div><div class="stat-label">Backend Replaced</div></div>
+    </div>
+    <div class="card-grid cols-2" style="margin-top:16px;">
+      <div class="card card-green">
+        <div class="card-label green">Key Highlight</div>
+        <div class="card-title">Autobot Launched</div>
+        <div class="card-body">Custom meeting-recording system using Recall AI as backend. Replaced Fireflies + n8n automation pipeline with an in-house solution.</div>
+      </div>
+      <div class="card card-cyan">
+        <div class="card-label cyan">Delivered</div>
+        <div class="card-title">End-to-End Automation</div>
+        <div class="card-body">Automated transcript upload to Google Drive + Slack notifications + email summaries. Eliminated manual upload steps entirely.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: ERIC'S WHAT WE'RE BUILDING NEXT / ROADMAP -->
+  <div class="slide slide-content" data-index="2">
+    <div class="section-header">
+      <div class="section-eyebrow">March Momentum — Eric</div>
+      <div class="section-title">What We're Building Next</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="roadmap-row">
+      <div class="card card-accent">
+        <div class="card-label accent">April 2026</div>
+        <div class="card-title">Autobot V2 Stability</div>
+        <div class="card-body">Improve UI, reduce join failures, add client-specific folders</div>
+      </div>
+      <div class="card card-purple">
+        <div class="card-label purple">April 2026</div>
+        <div class="card-title">Teramind MCP Dashboard</div>
+        <div class="card-body">Real-time OP productivity monitoring with threshold alerts</div>
+      </div>
+      <div class="card card-cyan">
+        <div class="card-label cyan">Q3 2026</div>
+        <div class="card-title">90-Day Onboarding AI</div>
+        <div class="card-body">Churn prediction scorecard + automated coaching for OAM</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label green">Q4 2026</div>
+        <div class="card-title">Central Knowledge Base</div>
+        <div class="card-body">Consolidate all client calls and data into AI-searchable database</div>
+      </div>
+    </div>
+    <div class="quote-block" style="margin-top:24px;">
+      <div class="quote-text">
+        March 2026 laid the foundation for WeAssist's AI infrastructure: Autobot replaced fragile external tools with an in-house, scalable system. The next phase turns raw transcripts into actionable intelligence.
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: MARK'S INFRASTRUCTURE & MAINTENANCE -->
+  <div class="slide slide-content" data-index="3">
+    <div class="section-header">
+      <div class="section-eyebrow">Infrastructure &amp; Maintenance — Mark</div>
+      <div class="section-title">Keeping the Lights On</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-3">
+      <div class="card card-green">
+        <div class="card-label green">Recovered</div>
+        <div class="card-title">Railway Outage</div>
+        <div class="card-body">Bounced back from the Railway service disruption. Systems are operational again.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label green">Fixed</div>
+        <div class="card-title">Slack, Navi CS, Jain Bot</div>
+        <div class="card-body">Maintenance on infrastructure built before my arrival — all restored to working order.</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label amber">Migrated</div>
+        <div class="card-title">n8n Workflows</div>
+        <div class="card-body">Moved broken workflows from old n8n (limit-capped) to new server with no limits.</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; width:100%;">
+      <div class="card card-red" style="max-width:700px;">
+        <div class="card-label red">Ongoing Issue — n8n Authentication Bug</div>
+        <div class="card-body">
+          The new n8n server cannot authenticate new credentials. We must reuse existing ones, but the credentials database is opaque — we cannot trace which keys belong to which account. Another migration may be necessary.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: SUBSCRIPTION AUDIT -->
+  <div class="slide slide-content" data-index="4">
+    <div class="section-header">
+      <div class="section-eyebrow">Cost Optimization — Mark</div>
+      <div class="section-title">Subscription Tool Audit</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-block"><div class="stat-number green">47</div><div class="stat-label">Tools Audited</div></div>
+      <div class="stat-block"><div class="stat-number amber">$107K+</div><div class="stat-label">Annual Spend Tracked</div></div>
+      <div class="stat-block"><div class="stat-number blue">~$62K</div><div class="stat-label">Potential Savings</div></div>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <h3>Top 5 Largest Line Items (Annual)</h3>
+        <table class="mini-table">
+          <tr><th>Tool</th><th>Cost</th><th>Verdict</th></tr>
+          <tr><td>Teramind Cloud</td><td style="color:var(--red)">$39,480</td><td><span class="badge amber">REVIEW</span></td></tr>
+          <tr><td>LinkedIn Recruiter</td><td style="color:var(--red)">$33,700</td><td><span class="badge amber">REVIEW</span></td></tr>
+          <tr><td>Canditech</td><td style="color:var(--red)">$9,600</td><td><span class="badge amber">REVIEW</span></td></tr>
+          <tr><td>Juicebox</td><td style="color:var(--red)">$9,000</td><td><span class="badge amber">REVIEW</span></td></tr>
+          <tr><td>Google Workspace</td><td style="color:var(--amber)">$8,035</td><td><span class="badge amber">REDUCE</span></td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <h3>Proposed Consolidations</h3>
+        <ul class="bullet-list">
+          <li>Credits to Miss Jane for the master tool inventory</li>
+          <li class="green">Komodo &rarr; Loom (SOP-focused, more affordable)</li>
+          <li class="green">Google Meet &rarr; Zoom (already in Workspace)</li>
+          <li class="green">Antigravity/Gemini &rarr; Claude/ChatGPT where appropriate</li>
+          <li class="green">Hetzner VPS ($7/mo) &rarr; Railway (predictable vs. variable)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SLIDE 5: PROPOSALS — AUTOPROCTOR + ANTIGRAVITY -->
+  <div class="slide slide-content" data-index="5">
+    <div class="section-header">
+      <div class="section-eyebrow">Proposals &amp; Evaluations — Mark</div>
+      <div class="section-title">Cancellations &amp; New Opportunities</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-red">
+        <div class="card-label red">Canceled</div>
+        <div class="card-title">AutoProctor Replacement</div>
+        <div class="card-body">Candidate could not replicate features essential for equipment-based recruitment flows. Formally canceled — no viable alternative identified.</div>
+      </div>
+      <div class="card card-purple">
+        <div class="card-label purple">Proposal</div>
+        <div class="card-title">Evaluate Antigravity as Claude Code Alternative</div>
+        <div class="card-body">Antigravity is included in our Google Workspace subscription. It now offers document creation, terminal execution, and browser control — the very features that made Claude Code valuable. We should pilot this.</div>
+      </div>
+    </div>
+    <div class="card-grid cols-2" style="margin-top:12px;">
+      <div class="card card-amber">
+        <div class="card-label amber">Underutilized</div>
+        <div class="card-title">Gemini &amp; Antigravity</div>
+        <div class="card-body">Both are included in our Workspace subscription. For chat-only tasks, Gemini via Gems can be customized. We are paying for these but not fully leveraging them.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label green">Platform Unification</div>
+        <div class="card-title">Consolidate into Google Workspace</div>
+        <div class="card-body">Drive, Meet, and Gmail are tightly integrated with zero external auth required. Automating between them eliminates an entire class of maintenance failures.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: DATA FRAGMENTATION -->
+  <div class="slide slide-content" data-index="6">
+    <div class="section-header">
+      <div class="section-eyebrow">Root Cause Analysis — Mark</div>
+      <div class="section-title">The Data Fragmentation &amp; Silo Problem</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-red">
+        <div class="card-label red">Cross-Platform</div>
+        <div class="card-body">Data exists in Google Sheets, Drive, personal My Drives, n8n, and external tools. We don't have a single source of truth.</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label amber">Within-Platform</div>
+        <div class="card-body">Data stored in personal My Drives requires individual sharing. There's no map of what data exists — this is something we need to fix together.</div>
+      </div>
+    </div>
+    <div class="card-grid cols-2" style="margin-top:12px;">
+      <div class="card card-purple">
+        <div class="card-label purple">Impact on Churn Model</div>
+        <div class="card-body">Building a churn prediction model requires real-time, clean, comprehensive data. 10 hand-selected clients and transcripts without metadata are not enough for a statistical model.</div>
+      </div>
+      <div class="card card-accent">
+        <div class="card-label accent">The Goal — Central Knowledge Base</div>
+        <div class="card-body">Aligns directly with the Q4 2026 roadmap: consolidate all client calls and data into an AI-searchable database. This is the foundation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: SHEETS VS MODELS -->
+  <div class="slide slide-content" data-index="7">
+    <div class="section-header">
+      <div class="section-eyebrow">Technical Deep-Dive — Mark</div>
+      <div class="section-title">Why Google Sheets + Statistical Models Don't Mix</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <h3>Statistical Models (Deterministic)</h3>
+        <ul class="bullet-list">
+          <li class="red">Require clean, typed data — numbers stored as text cause errors</li>
+          <li class="red">Client names differing across sheets break joins</li>
+          <li class="red">Outdated sheets with ghost clients pollute datasets</li>
+          <li class="red">Strict schema enforcement needed — Sheets cannot provide this</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>LLMs (Semantic)</h3>
+        <ul class="bullet-list">
+          <li class="amber">Can ingest unstructured data — but feeding all our data is prohibitively expensive</li>
+          <li class="amber">Inconsistent data causes hallucinations</li>
+          <li class="amber">Outputs sound accurate but are polluted by data quality issues</li>
+          <li>Short-term insights possible — long-term historical analytics are not</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-accent" style="max-width:700px; margin-top:16px; width:100%;">
+      <div class="card-title">Foundation Principle</div>
+      <div class="card-body">You cannot build a predictive model without knowing what data exists, where it lives, and whether it is clean. Organization must come first.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: NEXUS V2 -->
+  <div class="slide slide-content" data-index="8">
+    <div class="section-header">
+      <div class="section-eyebrow">Platform Initiative — Mark</div>
+      <div class="section-title">Nexus v2 — Starting with After-Sales</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-green">
+        <div class="card-label green">Achievement</div>
+        <div class="card-title">After-Sales Data Centralized</div>
+        <div class="card-body">Cleaned and consolidated data from Drive sheets used daily by Miss Michelle and Miss Bell. Contained within a single structured database with enforced schema.</div>
+      </div>
+      <div class="card card-cyan">
+        <div class="card-label cyan">Process Research</div>
+        <div class="card-title">Workflows Mapped &amp; Observed</div>
+        <div class="card-body">Gathered workflows from all after-sales stakeholders. Sat in 90-day onboarding calls. Platform designed from observed behavior, not assumptions.</div>
+      </div>
+    </div>
+    <div class="card-grid cols-3" style="margin-top:12px;">
+      <div class="card card-purple"><div class="card-label purple">CS Playbook</div><div class="card-body">Resolved inconsistent 90-day onboarding note-taking via structured forms</div></div>
+      <div class="card card-accent"><div class="card-label accent">Hetzner VPS</div><div class="card-body">~$7/month bare-metal server hosting Nexus v2 + new n8n instance</div></div>
+      <div class="card card-amber"><div class="card-label amber">Status</div><div class="card-body">Built but not yet used daily — requires team testing and feedback</div></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: SCHEMA ENFORCEMENT + WORKSTACK -->
+  <div class="slide slide-content" data-index="9">
+    <div class="section-header">
+      <div class="section-eyebrow">Data Integrity — Mark</div>
+      <div class="section-title">Schema Enforcement &amp; WorkStack OS</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <h3>Google Sheets Limitations</h3>
+        <ul class="bullet-list">
+          <li class="red">Schema can be changed on a whim — column names, types, layouts</li>
+          <li class="red">No data integrity enforcement — relies entirely on human discipline</li>
+          <li class="red">Formulas break when sheet layouts change</li>
+          <li class="red">Manual client name duplication across sheets — inconsistency inevitable</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Nexus v2 &amp; WorkStack OS</h3>
+        <ul class="bullet-list">
+          <li class="green">Strict schema — impossible to store unclean data</li>
+          <li class="green">Enforced by forms, not human memory</li>
+          <li class="green">Relationships maintained by foreign keys — no manual duplication</li>
+          <li class="green">WorkStack OS: EOD reporting with structured data entry by design</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-green" style="max-width:700px; margin-top:16px; width:100%;">
+      <div class="card-title">WorkStack OS — Scheduled for May, In Progress</div>
+      <div class="card-body">Currently using End-of-Day reporting in WorkStack. Forms dictate the schema — migrating more operations here aligns with the data organization goal.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: MAINTENANCE BURDEN -->
+  <div class="slide slide-content" data-index="10">
+    <div class="section-header">
+      <div class="section-eyebrow">Observation — Mark</div>
+      <div class="section-title">The Maintenance Burden Slows Down Innovation</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-red">
+        <div class="card-label red">The Trap</div>
+        <div class="card-title">More Platforms = More Maintenance</div>
+        <div class="card-body">Every new platform acquired adds ongoing connection maintenance. My time is split between maintaining existing workflows, fixing broken automations, managing credentials, and high-value initiatives (data organization, analytics, Nexus v2).</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label amber">The Consequence</div>
+        <div class="card-title">Potential Remains Unrealized</div>
+        <div class="card-body">I can see significant potential: organized databases, cost savings, unified tooling, predictive analytics. But these only become real if the maintenance burden is eased.</div>
+      </div>
+    </div>
+    <div class="card card-accent" style="max-width:700px; margin-top:16px; width:100%;">
+      <div class="card-title">Proposal: Stop Acquiring, Start Organizing</div>
+      <div class="card-body">If we keep building, we must maintain what we build. If we keep acquiring platforms, we must maintain their connections. Priority: stabilize the foundation first. Organization before expansion.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: TRANSPARENCY -->
+  <div class="slide slide-content" data-index="11">
+    <div class="section-header">
+      <div class="section-eyebrow">Cultural Alignment — Mark</div>
+      <div class="section-title">Radical Transparency &amp; Knowledge Access</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-red">
+        <div class="card-label red">The Challenge</div>
+        <div class="card-title">Data Silos Limit Our Transparency</div>
+        <div class="card-body">Data in personal My Drives requires individual sharing. Team members cannot discover what data exists without asking. This is an area where we can do better on radical transparency.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label green">The Remedy</div>
+        <div class="card-title">Centralized, Accessible Knowledge</div>
+        <div class="card-body">All non-confidential knowledge should be accessible by default. A centralized database with proper access controls achieves this — visible, organized, and auditable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: AI & AUTOMATION KNOWLEDGE -->
+  <div class="slide slide-content" data-index="12">
+    <div class="section-header">
+      <div class="section-eyebrow">Team Upskilling — Eric &amp; Mark</div>
+      <div class="section-title">AI &amp; Automation Knowledge Assessment</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2" style="margin-top:12px;">
+      <div class="card card-accent">
+        <div class="card-label accent">Why</div>
+        <div class="card-title">Ensure Team-Wide AI &amp; Automation Proficiency</div>
+        <div class="card-body">We need to make sure everyone is proficient in using AI &amp; Automation tools. This isn't just for the dev team — every department benefits from knowing how to leverage these tools effectively.</div>
+      </div>
+      <div class="card card-purple">
+        <div class="card-label purple">How</div>
+        <div class="card-title">Monthly Assessment — Starting July 2026</div>
+        <div class="card-body">Every month, starting the last Friday of July 2026, we take an assessment to check our knowledge, skill, and how updated we are in AI &amp; Automation. Mark will prepare and check the monthly assessment.</div>
+      </div>
+    </div>
+    <div class="card card-accent" style="max-width:700px; margin-top:12px; width:100%;">
+      <div class="card-title">Also: Agent Tooling &amp; Learning</div>
+      <div class="card-body">Improved AI agent tooling to reduce token costs. Deep research into data cleaning, analytics, and data engineering. Cross-model AI evaluation for performance and cost modeling.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: PRIORITY LIST -->
+  <div class="slide slide-content" data-index="13">
+    <div class="section-header">
+      <div class="section-eyebrow">Priority List — Mark</div>
+      <div class="section-title">Current Initiatives &amp; Next Steps</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <ol class="bullet-list" style="gap:10px;">
+          <li class="green"><strong>Setup n8n Drive Transcript Month Routing</strong><br><span style="font-size:0.75rem;">Automate monthly folder routing so workflows don't need manual month updates.</span></li>
+          <li><strong>Maintain Postgres Database</strong><br><span style="font-size:0.75rem;">Stay on Postgres — it is the most convenient to maintain. No migration to another DB.</span></li>
+          <li class="green"><strong>Verify Backups Are Working</strong><br><span style="font-size:0.75rem;">Ensure database and server backups are functional and restorable.</span></li>
+          <li><strong>Migrate n8n to Hetzner</strong><br><span style="font-size:0.75rem;">Move n8n instance to the Hetzner VPS for stability and cost control.</span></li>
+          <li><strong>Team Feedback on Nexus v2</strong><br><span style="font-size:0.75rem;">Test the platform, provide feedback — refine before daily-driver adoption.</span></li>
+        </ol>
+      </div>
+      <div class="col">
+        <ol class="bullet-list" style="gap:10px; counter-reset:item 5;">
+          <li style="counter-increment:item;"><strong>Adopt Cost-Saving Proposals</strong><br><span style="font-size:0.75rem;">Tool consolidations and platform migrations need team approval to realize savings.</span></li>
+          <li style="counter-increment:item;"><strong>Explore Antigravity</strong><br><span style="font-size:0.75rem;">Evaluate Antigravity as a Claude Code alternative — included in Workspace, now has terminal/browser/document features.</span></li>
+        </ol>
+        <div class="card card-cyan" style="margin-top:16px;">
+          <div class="card-title">The Goal</div>
+          <div class="card-body" style="font-size:0.8rem; font-weight:600;">Make WeAssist a truly real-time, data-driven company — where we can run analytics on our own data, monitor long-term trends, and make decisions based on evidence, not fragmented snapshots.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 14: KEY TAKEAWAYS -->
+  <div class="slide slide-content" data-index="14">
+    <div class="section-header">
+      <div class="section-eyebrow">Summary</div>
+      <div class="section-title">Key Takeaways</div>
+      <div class="section-rule"></div>
+    </div>
+    <ul class="bullet-list" style="margin-top:12px; gap:14px;">
+      <li class="green"><strong>Autobot:</strong> Built from scratch — custom meeting-recording system replacing Fireflies + n8n pipeline. 90+ OPs monitored, ~120 hrs/mo saved.</li>
+      <li><strong>Roadmap:</strong> Autobot V2 stability, Teramind MCP dashboard, 90-Day Onboarding AI, Central Knowledge Base (Q4 2026).</li>
+      <li><strong>AutoProctor:</strong> Canceled — could not replace essential recruitment features.</li>
+      <li class="green"><strong>Antigravity:</strong> Now a viable Claude Code alternative — already included in our Workspace subscription.</li>
+      <li><strong>Subscription Audit:</strong> 47 tools reviewed, ~$62K/yr in potential savings identified. Credits to Miss Jane for the master inventory.</li>
+      <li><strong>Data Fragmentation:</strong> The root problem preventing analytics, churn modeling, and long-term visibility. Aligns with Q4 Central Knowledge Base goal.</li>
+      <li><strong>Nexus v2:</strong> Platform built to solve data fragmentation — starting with after-sales, ready for team testing.</li>
+      <li class="amber"><strong>n8n Bug:</strong> Credential authentication broken on new server — may require another migration.</li>
+      <li class="green"><strong>The Path Forward:</strong> Organization first. Stabilize the foundation before we expand further.</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 14: CLOSING -->
+  <div class="slide slide-nofade" data-index="15" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#f8fafc;position:absolute;inset:0;opacity:0;pointer-events:none;">
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.28em;color:#2563eb;margin-bottom:18px;font-weight:600;">AI &amp; Dev Department</div>
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#0f172a;margin-bottom:12px;">Questions &amp; Discussion</div>
+    <div style="width:60px;height:3px;background:#2563eb;margin:28px auto;border-radius:2px;"></div>
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:1.15rem;color:#334155;font-weight:400;letter-spacing:-0.01em;">Let's align on the path forward — together.</div>
+  </div>
+
+</div>
+
+<div class="nav-hint" id="navHint">Use &larr; &rarr; arrow keys or click below to navigate</div>
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="goTo(currentSlide-1)"><span>&larr;</span> Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="goTo(currentSlide+1)">Next <span>&rarr;</span></button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentSlide = 0;
+  function updateSlide() {
+    slides.forEach((s,i) => {
+      const isNofade = s.classList.contains('slide-nofade');
+      s.classList.remove('active','exit-left');
+      if (i === currentSlide) {
+        s.classList.add('active'); s.style.opacity='1'; s.style.transform='translateX(0)'; s.style.pointerEvents='all';
+      } else if (i < currentSlide) {
+        s.classList.add('exit-left'); s.style.opacity='0'; if(!isNofade) s.style.transform='translateX(-60px)'; s.style.pointerEvents='none';
+      } else {
+        s.style.opacity='0'; if(!isNofade) s.style.transform='translateX(60px)'; s.style.pointerEvents='none';
+      }
+    });
+    document.querySelectorAll('.nav-dot').forEach((d,i) => d.classList.toggle('active', i===currentSlide));
+    document.getElementById('prevBtn').disabled = currentSlide===0;
+    document.getElementById('nextBtn').disabled = currentSlide===totalSlides-1;
+    document.getElementById('progressBar').style.width = ((currentSlide+1)/totalSlides*100)+'%';
+    const hint = document.getElementById('navHint');
+    hint.style.opacity = currentSlide>0?'0':'1'; hint.style.transition='opacity 0.5s';
+  }
+  function goTo(index) { if (index<0||index>=totalSlides) return; currentSlide=index; updateSlide(); }
+  const navDots = document.getElementById('navDots');
+  for (let i=0; i<totalSlides; i++) { const d=document.createElement('div'); d.className='nav-dot'; if(i===0)d.classList.add('active'); d.addEventListener('click',()=>goTo(i)); navDots.appendChild(d); }
+  document.addEventListener('keydown',(e)=>{
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') { e.preventDefault(); goTo(currentSlide+1); }
+    else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { e.preventDefault(); goTo(currentSlide-1); }
+    else if (e.key==='Home') { e.preventDefault(); goTo(0); }
+    else if (e.key==='End') { e.preventDefault(); goTo(totalSlides-1); }
+  });
+  let touchStartX=0;
+  document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});
+  document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX; if(Math.abs(diff)>50){if(diff>0)goTo(currentSlide+1);else goTo(currentSlide-1);}});
+  updateSlide();
+</script>
+</body>
+</html>
