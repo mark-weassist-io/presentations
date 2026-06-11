@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI &amp; Dev — May Recap &amp; Strategic Shift — June 2026</title>
+<style>
+  :root {
+    --bg-deep: #0b0f19;
+    --bg-card: #111827;
+    --bg-card-alt: #1f2937;
+    --border: #374151;
+    --border-light: #4b5563;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --accent: #3b82f6;
+    --accent-soft: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.15);
+    --red: #ef4444;
+    --red-soft: rgba(239, 68, 68, 0.1);
+    --amber: #f59e0b;
+    --amber-soft: rgba(245, 158, 11, 0.1);
+    --green: #10b981;
+    --green-soft: rgba(16, 185, 129, 0.1);
+    --purple: #8b5cf6;
+    --purple-soft: rgba(139, 92, 246, 0.1);
+    --cyan: #06b6d4;
+    --cyan-soft: rgba(6, 182, 212, 0.1);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-present: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font-sans); background:var(--bg-deep); color:var(--text-primary); overflow:hidden; height:100dvh; width:100dvw; user-select:none; }
+  .presentation { width:100%; height:100%; position:relative; }
+  .slide { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 64px; opacity:0; transform:translateX(60px); transition:opacity var(--transition-present),transform var(--transition-present); pointer-events:none; overflow:hidden; }
+  .slide.active { opacity:1; transform:translateX(0); pointer-events:all; }
+  .slide.exit-left { opacity:0; transform:translateX(-60px); }
+  .slide-nofade { transition:none !important; }
+  .slide-title { text-align:center; }
+  .slide-content { align-items:flex-start; justify-content:flex-start; padding-top:56px; }
+  .title-eyebrow { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.28em; color:var(--accent); margin-bottom:18px; font-weight:600; }
+  .title-main { font-size:clamp(2.2rem,5vw,3.2rem); font-weight:800; line-height:1.15; letter-spacing:-0.02em; margin-bottom:12px; }
+  .title-sub { font-size:1rem; color:var(--text-secondary); font-weight:400; letter-spacing:-0.01em; }
+  .title-accent-line { width:60px; height:3px; background:var(--accent); margin:28px auto; border-radius:2px; }
+  .section-header { margin-bottom:16px; width:100%; }
+  .section-eyebrow { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--accent); font-weight:600; margin-bottom:4px; }
+  .section-title { font-size:clamp(1.5rem,2.8vw,2rem); font-weight:700; letter-spacing:-0.02em; line-height:1.2; }
+  .section-rule { height:1px; background:var(--border); margin-top:8px; width:100%; }
+  .card-grid { display:grid; gap:12px; width:100%; }
+  .card-grid.cols-2 { grid-template-columns:1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+  .card-grid.cols-4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+  .card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px 18px; transition:border-color var(--transition-fast),box-shadow var(--transition-fast); box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+  .card:hover { border-color:var(--border-light); }
+  .card-accent { border-left:3px solid var(--accent); padding-left:22px; }
+  .card-red { border-left:3px solid var(--red); padding-left:22px; background:var(--red-soft); }
+  .card-amber { border-left:3px solid var(--amber); padding-left:22px; background:var(--amber-soft); }
+  .card-green { border-left:3px solid var(--green); padding-left:22px; background:var(--green-soft); }
+  .card-purple { border-left:3px solid var(--purple); padding-left:22px; background:var(--purple-soft); }
+  .card-cyan { border-left:3px solid var(--cyan); padding-left:22px; background:var(--cyan-soft); }
+  .card-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.18em; font-weight:700; margin-bottom:10px; }
+  .card-label.red { color:var(--red); } .card-label.amber { color:var(--amber); } .card-label.green { color:var(--green); }
+  .card-label.purple { color:var(--purple); } .card-label.cyan { color:var(--cyan); } .card-label.accent { color:var(--accent); }
+  .card-title { font-size:1.05rem; font-weight:700; margin-bottom:6px; line-height:1.3; }
+  .card-body { font-size:0.83rem; color:var(--text-secondary); line-height:1.5; }
+  .stat-row { display:flex; gap:20px; justify-content:center; margin:10px 0; flex-wrap:wrap; }
+  .stat-block { text-align:center; padding:12px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg); min-width:130px; }
+  .stat-number { font-size:1.75rem; font-weight:800; letter-spacing:-0.03em; line-height:1; }
+  .stat-number.red { color:var(--red); } .stat-number.amber { color:var(--amber); } .stat-number.green { color:var(--green); } .stat-number.blue { color:var(--accent); }
+  .stat-label { font-size:0.73rem; color:var(--text-muted); margin-top:4px; text-transform:uppercase; letter-spacing:0.1em; }
+  .bullet-list { list-style:none; display:flex; flex-direction:column; gap:8px; width:100%; }
+  .bullet-list li { padding-left:18px; position:relative; font-size:0.8rem; color:var(--text-secondary); line-height:1.45; }
+  .bullet-list li::before { content:''; position:absolute; left:0; top:7px; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  .bullet-list li.red::before { background:var(--red); } .bullet-list li.amber::before { background:var(--amber); } .bullet-list li.green::before { background:var(--green); }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:24px; width:100%; margin-top:12px; }
+  .col h3 { font-size:0.92rem; font-weight:700; margin-bottom:10px; letter-spacing:-0.01em; }
+  .quote-block { background:var(--bg-card-alt); border:1px solid var(--border); border-radius:var(--radius-lg); padding:16px 24px; margin:12px 0; width:100%; position:relative; }
+  .quote-block::before { content:'"'; position:absolute; top:-6px; left:12px; font-size:3rem; color:var(--accent); opacity:0.15; line-height:1; }
+  .quote-text { font-size:0.83rem; color:var(--text-secondary); line-height:1.5; font-style:italic; }
+  .badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-right:6px; margin-bottom:4px; }
+  .badge.red { background:var(--red-soft); color:var(--red); } .badge.amber { background:var(--amber-soft); color:var(--amber); }
+  .badge.green { background:var(--green-soft); color:var(--green); } .badge.purple { background:var(--purple-soft); color:var(--purple); } .badge.cyan { background:var(--cyan-soft); color:var(--cyan); }
+  .mini-table { width:100%; border-collapse:collapse; font-size:0.82rem; margin-top:10px; }
+  .mini-table th { text-align:left; padding:6px 10px; color:var(--text-muted); font-weight:600; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; border-bottom:1px solid var(--border); }
+  .mini-table td { padding:8px 10px; border-bottom:1px solid var(--border); color:var(--text-secondary); }
+  .nav { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; z-index:100; }
+  .nav-btn { background:var(--bg-card); border:1px solid var(--border); color:var(--text-primary); padding:8px 18px; border-radius:var(--radius-md); cursor:pointer; font-size:0.85rem; font-weight:600; transition:all var(--transition-fast); display:flex; align-items:center; gap:8px; }
+  .nav-btn:hover { background:var(--bg-card-alt); border-color:var(--accent); }
+  .nav-btn:disabled { opacity:0.3; cursor:not-allowed; pointer-events:none; }
+  .nav-dots { display:flex; gap:6px; }
+  .nav-dot { width:8px; height:8px; border-radius:50%; background:var(--border); transition:all var(--transition-fast); cursor:pointer; }
+  .nav-dot.active { background:var(--accent); width:24px; border-radius:4px; }
+  .nav-dot:hover { background:var(--text-muted); }
+  .nav-hint { font-size:0.72rem; color:var(--text-muted); position:fixed; bottom:72px; left:50%; transform:translateX(-50%); z-index:100; }
+  .progress-bar { position:fixed; top:0; left:0; height:4px; background:linear-gradient(90deg,var(--accent),#60a5fa); z-index:200; transition:width var(--transition-smooth); }
+  .roadmap-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; width:100%; margin-top:12px; }
+  @media (max-width:768px) { .slide { padding:32px 20px; } .card-grid.cols-2,.card-grid.cols-3,.card-grid.cols-4 { grid-template-columns:1fr; } .two-col { grid-template-columns:1fr; } .roadmap-row { grid-template-columns:1fr; } .stat-row { gap:10px; } .nav-btn { padding:8px 14px; font-size:0.78rem; } }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="presentation" id="presentation">
+
+  <!-- SLIDE 0: TITLE -->
+  <div class="slide slide-title active" data-index="0">
+    <div class="title-eyebrow">WeAssist Internal Team Meeting &bull; June 2026</div>
+    <div class="title-main">AI &amp; Dev Department<br>May Recap &amp; Future Endeavors</div>
+    <div class="title-accent-line"></div>
+    <div class="title-sub">Presented by Mark Kenneth Badilla &bull; Focus on Cost Optimization &amp; Operations Alignment</div>
+  </div>
+
+  <!-- SLIDE 1: STRATEGIC SHIFT & METRICS BRIEF -->
+  <div class="slide slide-content" data-index="1">
+    <div class="section-header">
+      <div class="section-eyebrow">Strategic Shift</div>
+      <div class="section-title">Dev Focus &amp; A Quick Look at Metrics</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-accent">
+        <div class="card-label accent">Our Stance on Metrics</div>
+        <div class="card-title">Why We Are Keeping It Under 10 Seconds</div>
+        <div class="card-body">The work of the AI and Development department varies so widely from week to week that standard operational metrics do not capture our true output. Moving forward, we are prioritizing <strong>impact-driven project updates</strong> over numerical graphs.</div>
+      </div>
+      <div class="card card-green">
+        <div class="card-label green">Core Mission</div>
+        <div class="card-title">Simplify Systems &bull; Unify Data</div>
+        <div class="card-body">All development efforts are focused on:
+          <br>&bull; Eliminating fragile integrations.
+          <br>&bull; Lowering the maintenance overhead.
+          <br>&bull; Centralizing data onto clean, structured databases.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: COST OPTIMIZATION (THE "RECALL PLAN") -->
+  <div class="slide slide-content" data-index="2">
+    <div class="section-header">
+      <div class="section-eyebrow">Cost Optimization</div>
+      <div class="section-title">The "Recall Plan" Cost Comparison</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-block"><div class="stat-number blue">~$300/mo</div><div class="stat-label">Estimated Savings</div></div>
+      <div class="stat-block"><div class="stat-number green">80%</div><div class="stat-label">Spend Reduced</div></div>
+      <div class="stat-block"><div class="stat-number green">~$3.6K/yr</div><div class="stat-label">Annual Savings Impact</div></div>
+    </div>
+    <div class="two-col">
+      <div class="col">
+        <h3>Current Stack Cost</h3>
+        <table class="mini-table">
+          <tr><th>Item / Service</th><th>Monthly Cost</th></tr>
+          <tr><td>Recall AI (Meeting recording API)</td><td style="color:var(--red)">$367.00</td></tr>
+          <tr><td>Railway (Hosting n8n)</td><td style="color:var(--red)">$10.00</td></tr>
+          <tr><td>AWS (Autobot cloud hosting)</td><td>Variable / Credit-bound</td></tr>
+          <tr style="font-weight:bold; border-top:2px solid var(--border);"><td>Total Current Base</td><td>$377.00/mo</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <h3>Proposed Stack Cost (Spleen + Self-Hosted)</h3>
+        <table class="mini-table">
+          <tr><th>Item / Service</th><th>Monthly Cost</th></tr>
+          <tr><td>Spleen ($7/mo per Zoom user)</td><td style="color:var(--green)">$70.00 to $84.00</td></tr>
+          <tr><td>Hetzner VPS (Autobot + n8n)</td><td style="color:var(--green)">$0.00 (Flat $13/mo already paid)</td></tr>
+          <tr><td>Google Apps Script</td><td style="color:var(--green)">$0.00 (Included in Workspace)</td></tr>
+          <tr style="font-weight:bold; border-top:2px solid var(--border);"><td>Total Proposed Base</td><td>$70.00 - $84.00/mo</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: ARCHITECTURE SIMPLIFICATION -->
+  <div class="slide slide-content" data-index="3">
+    <div class="section-header">
+      <div class="section-eyebrow">Infrastructure Strategy</div>
+      <div class="section-title">Decoupling Transcription from Analytics</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-purple">
+        <div class="card-label purple">Simplify Transcription</div>
+        <div class="card-title">Zoom Native + Spleen</div>
+        <div class="card-body">We are already paying for Zoom. Instead of outsourcing recordings/transcripts to external bots at variable per-hour rates:
+          <br>&bull; Capture recordings and transcripts using <strong>Zoom Native Cloud</strong>.
+          <br>&bull; Use <strong>Spleen</strong> to move files directly from Zoom cloud to Google Drive.
+        </div>
+      </div>
+      <div class="card card-cyan">
+        <div class="card-label cyan">Move to Google Workspace</div>
+        <div class="card-title">Google Apps Script Automations</div>
+        <div class="card-body">Google Workspace is underutilized. We are moving n8n's Google Drive organization tasks to Apps Script. 
+          <br>&bull; Better, direct handling of Google Drive.
+          <br>&bull; Eases the maintenance burden of n8n integrations.
+          <br>&bull; Eliminates n8n credential bugs.
+        </div>
+      </div>
+    </div>
+    <div class="card card-accent" style="width:100%; margin-top:12px;">
+      <div class="card-title">Self-Host Autobot &amp; n8n on Hetzner VPS</div>
+      <div class="card-body">To eliminate high AWS costs and bypass Railway's limits, we are rewriting a bare-bones Autobot to host on our Hetzner VPS (flat $13/mo). This reduces maintenance time and frees up hours to assist other team members with GoHighLevel automations.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: DATA CLEANING & NEXUS V2 -->
+  <div class="slide slide-content" data-index="4">
+    <div class="section-header">
+      <div class="section-eyebrow">Data Infrastructure</div>
+      <div class="section-title">Nexus v2 &amp; Data Pipeline Progress</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-green">
+        <div class="card-label green">Progress</div>
+        <div class="card-title">2026 Data Clean-up</div>
+        <div class="card-body">The data pipeline is working exceptionally well. We have successfully cleaned and structured the data, resolving fragmentation issues.</div>
+      </div>
+      <div class="card card-cyan">
+        <div class="card-label cyan">Target Scope</div>
+        <div class="card-title">After-Sales Workflow Scoping</div>
+        <div class="card-body">The pipeline is currently scoped strictly to the <strong>2026 After-Sales department workflow</strong>. This prevents scope creep and ensures early stability.</div>
+      </div>
+    </div>
+    <div class="card card-purple" style="width:100%; margin-top:12px;">
+      <div class="card-title">Next Major Milestone: User Onboarding</div>
+      <div class="card-body">Our next step is to teach the After-Sales team how to use the platform. We want them actively working in the Nexus v2 environment so we can gather hands-on feedback and iterate on improvements.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: LESSONS LEARNED — COMPROMISE -->
+  <div class="slide slide-content" data-index="5">
+    <div class="section-header">
+      <div class="section-eyebrow">Personal Reflection</div>
+      <div class="section-title">Development Mindset vs. Operational Reality</div>
+      <div class="section-rule"></div>
+    </div>
+    <div class="quote-block">
+      <div class="quote-text">
+        "In my first two months here, I've learned that proposing changes in a corporate environment is vastly different from doing so in a pure development space."
+      </div>
+    </div>
+    <div class="card-grid cols-2">
+      <div class="card card-red">
+        <div class="card-label red">The Dev Environment</div>
+        <div class="card-title">Designed for Disruption</div>
+        <div class="card-body">Developers are surrounded by technical peers. We experiment constantly, break things to learn, and can pivot tools instantly because no active client calls or daily operations are on the line.</div>
+      </div>
+      <div class="card card-amber">
+        <div class="card-label amber">The Operations Reality</div>
+        <div class="card-title">Disruption is Costly</div>
+        <div class="card-body">Operational departments are extremely busy managing client relationships and daily deliverables. Jarring tool changes introduce friction, resistance, and business risks.</div>
+      </div>
+    </div>
+    <div class="card card-green" style="width:100%; margin-top:12px;">
+      <div class="card-title">The Compromise</div>
+      <div class="card-body">As a developer, I must design proposals that preserve existing workflows as much as possible, minimize friction, and respect the operational tempo. We will reach our data milestones through smooth, well-planned transitions.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: CONCLUSION -->
+  <div class="slide slide-nofade" data-index="6" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#0b0f19;position:absolute;inset:0;opacity:0;pointer-events:none;">
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.28em;color:#3b82f6;margin-bottom:18px;font-weight:600;">AI &amp; Dev Department</div>
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#f9fafb;margin-bottom:12px;">Let's Align &amp; Save</div>
+    <div style="width:60px;height:3px;background:#3b82f6;margin:28px auto;border-radius:2px;"></div>
+    <div style="font-family:'Inter','Segoe UI',system-ui,sans-serif;font-size:1.15rem;color:#d1d5db;font-weight:400;letter-spacing:-0.01em;">Simplifying infrastructure to boost operational efficiency.</div>
+  </div>
+
+</div>
+
+<div class="nav-hint" id="navHint">Use &larr; &rarr; arrow keys or click below to navigate</div>
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="goTo(currentSlide-1)" id="previous-slide-button"><span>&larr;</span> Previous</button>
+  <div class="nav-dots" id="navDots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="goTo(currentSlide+1)" id="next-slide-button">Next <span>&rarr;</span></button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  let currentSlide = 0;
+  function updateSlide() {
+    slides.forEach((s,i) => {
+      const isNofade = s.classList.contains('slide-nofade');
+      s.classList.remove('active','exit-left');
+      if (i === currentSlide) {
+        s.classList.add('active'); s.style.opacity='1'; s.style.transform='translateX(0)'; s.style.pointerEvents='all';
+      } else if (i < currentSlide) {
+        s.classList.add('exit-left'); s.style.opacity='0'; if(!isNofade) s.style.transform='translateX(-60px)'; s.style.pointerEvents='none';
+      } else {
+        s.style.opacity='0'; if(!isNofade) s.style.transform='translateX(60px)'; s.style.pointerEvents='none';
+      }
+    });
+    document.querySelectorAll('.nav-dot').forEach((d,i) => d.classList.toggle('active', i===currentSlide));
+    document.getElementById('prevBtn').disabled = currentSlide===0;
+    document.getElementById('nextBtn').disabled = currentSlide===totalSlides-1;
+    document.getElementById('progressBar').style.width = ((currentSlide+1)/totalSlides*100)+'%';
+    const hint = document.getElementById('navHint');
+    hint.style.opacity = currentSlide>0?'0':'1'; hint.style.transition='opacity 0.5s';
+  }
+  function goTo(index) { if (index<0||index>=totalSlides) return; currentSlide=index; updateSlide(); }
+  const navDots = document.getElementById('navDots');
+  for (let i=0; i<totalSlides; i++) { const d=document.createElement('div'); d.className='nav-dot'; if(i===0)d.classList.add('active'); d.addEventListener('click',()=>goTo(i)); navDots.appendChild(d); }
+  document.addEventListener('keydown',(e)=>{
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ') { e.preventDefault(); goTo(currentSlide+1); }
+    else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { e.preventDefault(); goTo(currentSlide-1); }
+    else if (e.key==='Home') { e.preventDefault(); goTo(0); }
+    else if (e.key==='End') { e.preventDefault(); goTo(totalSlides-1); }
+  });
+  let touchStartX=0;
+  document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX});
+  document.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].clientX; if(Math.abs(diff)>50){if(diff>0)goTo(currentSlide+1);else goTo(currentSlide-1);}});
+  updateSlide();
+</script>
+</body>
+</html>
