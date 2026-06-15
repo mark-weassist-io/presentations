@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-deep: #faf9f6; /* Warm, premium gallery off-white */
+    --bg-deep: #faf9f6;
     --bg-card: #ffffff;
     --bg-card-alt: #f3f3ee;
     --border: #e5e4da;
     --border-light: #c8c7b8;
     --text-primary: #1c1c1a;
-    --text-secondary: #3d3d3a; /* Darker grey for better contrast/readability */
+    --text-secondary: #3d3d3a;
     --text-muted: #7c7b72;
-    --accent: #2c3e50; /* Deep slate */
+    --accent: #2c3e50;
     --accent-soft: #34495e;
     --accent-glow: rgba(44, 62, 80, 0.05);
     --red: #a94442;
@@ -133,37 +133,35 @@
     </div>
   </div>
 
-  <!-- SLIDE 2: COST OPTIMIZATION (THE "RECALL PLAN") -->
+  <!-- SLIDE 2: COST OPTIMIZATION (INFRASTRUCTURE MIGRATION) -->
   <div class="slide slide-content" data-index="2">
     <div class="section-header">
       <div class="section-eyebrow">Cost Optimization</div>
-      <div class="section-title">The "Recall Plan" Cost Comparison</div>
+      <div class="section-title">Infrastructure Migration: Fixed Costs Over Usage-Based</div>
       <div class="section-rule"></div>
     </div>
     <div class="stat-row">
-      <div class="stat-block"><div class="stat-number">~$300/mo</div><div class="stat-label">Estimated Savings</div></div>
-      <div class="stat-block"><div class="stat-number">80%</div><div class="stat-label">Spend Reduced</div></div>
-      <div class="stat-block"><div class="stat-number">~$3.6K/yr</div><div class="stat-label">Annual Savings Impact</div></div>
+      <div class="stat-block"><div class="stat-number green">Fixed</div><div class="stat-label">Monthly Billing Model</div></div>
+      <div class="stat-block"><div class="stat-number green">Hetzner</div><div class="stat-label">Single Host for All Services</div></div>
+      <div class="stat-block"><div class="stat-number green">$13/mo</div><div class="stat-label">VPS Flat Rate</div></div>
     </div>
     <div class="two-col">
       <div class="col">
-        <h3>Current Stack Cost</h3>
+        <h3>Current Stack (Usage-Based)</h3>
         <table class="mini-table">
           <tr><th>Item / Service</th><th>Monthly Cost</th></tr>
-          <tr><td>Recall AI (Meeting recording API)</td><td style="color:var(--red); font-weight:600;">$367.00</td></tr>
-          <tr><td>Railway (Hosting n8n)</td><td style="color:var(--red); font-weight:600;">$10.00</td></tr>
-          <tr><td>AWS (Autobot cloud hosting)</td><td>Variable / Credit-bound</td></tr>
-          <tr style="font-weight:bold; border-top:1px solid var(--border);"><td>Total Current Base</td><td>$377.00/mo</td></tr>
+          <tr><td>AWS (Autobot cloud hosting)</td><td style="color:var(--red); font-weight:600;">Variable / Credit-bound</td></tr>
+          <tr><td>Railway (Hosting n8n)</td><td style="color:var(--red); font-weight:600;">$10.00 (usage-based)</td></tr>
+          <tr style="font-weight:bold; border-top:1px solid var(--border);"><td>Problem</td><td>Unpredictable costs</td></tr>
         </table>
       </div>
       <div class="col">
-        <h3>Proposed Stack Cost (Splain + Self-Hosted)</h3>
+        <h3>Proposed Stack (Hetzner Self-Hosted)</h3>
         <table class="mini-table">
           <tr><th>Item / Service</th><th>Monthly Cost</th></tr>
-          <tr><td>Splain ($7/mo per Zoom user)</td><td style="color:var(--green); font-weight:600;">$70.00 to $84.00</td></tr>
-          <tr><td>Hetzner VPS (Autobot + n8n)</td><td style="color:var(--green); font-weight:600;">$0.00 (Flat $13/mo already paid)</td></tr>
+          <tr><td>Hetzner VPS (n8n + Autobot + Recall)</td><td style="color:var(--green); font-weight:600;">$13.00/mo (fixed)</td></tr>
           <tr><td>Google Apps Script</td><td style="color:var(--green); font-weight:600;">$0.00 (Included in Workspace)</td></tr>
-          <tr style="font-weight:bold; border-top:1px solid var(--border);"><td>Total Proposed Base</td><td>$70.00 - $84.00/mo</td></tr>
+          <tr style="font-weight:bold; border-top:1px solid var(--border);"><td>Result</td><td>Fixed &amp; Predictable</td></tr>
         </table>
       </div>
     </div>
@@ -179,26 +177,26 @@
     <div class="card-grid cols-2">
       <div class="card card-accent">
         <div class="card-label">Simplify Transcription</div>
-        <div class="card-title">Zoom Native + Splain</div>
-        <div class="card-body">Setting up third-party bots in n8n is highly complex and time-consuming. Shifting to native tools offers a much cleaner workflow:
-          <br>&bull; Zoom Native automatically records on start—no bots to invite or manage.
-          <br>&bull; **Splain** smoothly transfers files from Zoom cloud to Google Drive.
+        <div class="card-title">Separating Mechanical Transcription</div>
+        <div class="card-body">The transcription system is being simplified by separating the mechanical recording/transcription layer from the analytics layer:
+          <br>&bull; Recall AI continues handling meeting recording as our backend.
+          <br>&bull; The raw transcription pipeline becomes a standalone, lightweight service.
         </div>
       </div>
       <div class="card card-accent">
-        <div class="card-label">Move to Google Workspace</div>
-        <div class="card-title">Google Apps Script Automations</div>
-        <div class="card-body">We are shifting remaining file organization and cleanup tasks from n8n to Google Apps Script. This native integration yields:
-          <br>&bull; Better, direct handling of Google Drive files.
-          <br>&bull; Elimination of complex n8n workflows and credential bugs.
-          <br>&bull; A completely hands-off automation pipeline.
+        <div class="card-label">Lighter Analytics Layer</div>
+        <div class="card-title">Separate Analytics Pipeline</div>
+        <div class="card-body">By decoupling analytics from transcription, we reduce the maintenance burden:
+          <br>&bull; Analytics processing runs independently—failures don't block transcription.
+          <br>&bull; Each layer can be updated, scaled, or debugged without affecting the other.
+          <br>&bull; Overall system becomes less heavy to maintain.
         </div>
       </div>
     </div>
-    <div class="card card-red" style="width:100%; margin-top:16px;">
-      <div class="card-label red">Zero Maintenance Goal</div>
-      <div class="card-title">Sunsetting Autobot (AWS) &amp; n8n Workflows</div>
-      <div class="card-body">We are completely decommissioning the custom AWS Autobot stack and shutting down n8n workflows. By shifting to Zoom Native + Splain, the entire transcription and upload pipeline becomes 100% hands-off. This eliminates the custom code maintenance burden, freeing up developer hours to assist with automation pipelines across the company, support GHL automations, and focus on core data engineering (Nexus v2).</div>
+    <div class="card card-green" style="width:100%; margin-top:16px;">
+      <div class="card-label green">Migration Goal</div>
+      <div class="card-title">Moving n8n &amp; Autobot to Hetzner</div>
+      <div class="card-body">We are migrating n8n from Railway and Autobot from AWS onto a single Hetzner VPS. This consolidates all services under one fixed monthly fee, eliminates usage-based billing surprises, and makes the Recall-powered transcription system compatible with our self-hosted infrastructure. Developer hours freed up from infrastructure firefighting can be redirected to automation pipelines across the company, GHL automations, and core data engineering (Nexus v2).</div>
     </div>
   </div>
 
