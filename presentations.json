@@ -1,0 +1,19 @@
+{
+  "$comment": "SINGLE SOURCE OF TRUTH for the presentations index. To add a deck: drop decks/<slug>/index.html, then prepend an entry here. Order = display order (newest first). No code edits needed.",
+  "decks": [
+    {
+      "slug": "june-16-dev-team-vision",
+      "title": "Dev Team Vision 2036",
+      "summary": "Strategic roadmap: scaling WeAssist with a small AI-augmented core, monetizing WSOS, and driving toward zero manual work.",
+      "date": "2026-06-16",
+      "tags": ["strategy", "dev team", "AI & automation"]
+    },
+    {
+      "slug": "ai-dev-may-recap-and-cost-optimization",
+      "title": "AI & Dev — May Recap & Strategic Shift",
+      "summary": "May recap of AI/dev progress and the strategic shift toward cost optimization across the stack.",
+      "date": "2026-06-01",
+      "tags": ["recap", "cost optimization", "AI & automation"]
+    }
+  ]
+}
