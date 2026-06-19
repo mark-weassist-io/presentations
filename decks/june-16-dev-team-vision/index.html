@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dev Team Vision 2036</title>
+<title>WeAssist — 2036 Vision</title>
 <style>
   :root {
     --bg: #f3f6ef; --panel: #fff; --ink: #2b3a2e; --ink-soft: #5c6b58;
@@ -30,13 +30,13 @@
   }
   .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
 
-  /* ─ content area ─ */
+  /* content area */
   .content {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 48px 64px 24px; gap: 28px; text-align: center;
+    padding: 40px 64px 20px; gap: 24px; text-align: center;
   }
 
-  /* ─ big visual number ─ */
+  /* big visual number */
   .visual-num {
     font-size: clamp(5rem, 18vw, 11rem);
     font-weight: 900; line-height: 1; letter-spacing: -.05em;
@@ -45,19 +45,19 @@
     user-select: none;
   }
 
-  /* ─ emoji icon ─ */
-  .icon { font-size: clamp(2.8rem, 6vw, 4rem); line-height: 1; }
+  /* emoji icon */
+  .icon { font-size: clamp(2.6rem, 6vw, 3.8rem); line-height: 1; }
 
-  /* ─ headline ─ */
+  /* headline */
   .headline {
     font-size: clamp(1.8rem, 4.5vw, 3rem);
     font-weight: 800; letter-spacing: -.03em; line-height: 1.15;
-    color: var(--ink); max-width: 780px;
+    color: var(--ink); max-width: 820px;
   }
   .headline em { color: var(--moss-deep); font-style: normal; }
 
-  /* ─ pills ─ */
-  .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  /* pills */
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; max-width: 900px; }
   .pill {
     background: var(--panel); border: 1px solid var(--line);
     border-radius: 99px; padding: 8px 18px;
@@ -65,8 +65,28 @@
     color: var(--moss-deep); box-shadow: 0 1px 4px rgba(43,58,46,.07);
   }
   .pill.accent { background: var(--moss-deep); color: #fff; border-color: var(--moss-deep); }
+  .pill.warn { background: var(--sun); color: #4a3410; border-color: #c98f2a; }
 
-  /* ─ script / subtext ─ */
+  /* stat row (big numbers) */
+  .stats { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px 26px; min-width: 150px; box-shadow: 0 2px 10px rgba(43,58,46,.06);
+  }
+  .stat .big { font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 900; color: var(--moss-deep); line-height: 1; letter-spacing: -.03em; }
+  .stat .lbl { font-size: clamp(.72rem, 1.4vw, .85rem); color: var(--ink-soft); margin-top: 8px; font-weight: 600; }
+  .stat .from { font-size: .68rem; color: var(--bark); margin-top: 4px; }
+
+  /* dept grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 920px; width: 100%; }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 18px; text-align: left; box-shadow: 0 2px 8px rgba(43,58,46,.05);
+  }
+  .card .ct { font-weight: 800; color: var(--moss-deep); font-size: clamp(.95rem,1.8vw,1.05rem); display: flex; align-items: center; gap: 8px; }
+  .card .cb { font-size: clamp(.78rem,1.4vw,.9rem); color: var(--ink-soft); line-height: 1.5; margin-top: 6px; }
+
+  /* script / subtext */
   .subtext {
     padding: 14px 64px 18px;
     border-top: 1px solid var(--line);
@@ -77,7 +97,7 @@
     text-align: center;
   }
 
-  /* ─ title slide specifics ─ */
+  /* title slide specifics */
   .slide-title .headline { font-size: clamp(2.4rem, 6vw, 4rem); }
   .slide-title .badge {
     font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
@@ -86,10 +106,10 @@
   }
   .slide-title .meta { font-size: .9rem; color: var(--ink-soft); }
 
-  /* ─ end slide ─ */
+  /* end slide */
   .slide-end .headline { font-size: clamp(2rem, 5vw, 3.4rem); }
 
-  /* ─ nav ─ */
+  /* nav */
   .nav {
     display: flex; align-items: center; justify-content: space-between;
     padding: 12px 32px; border-top: 1px solid var(--line);
@@ -118,121 +138,203 @@
     <!-- 0: Title -->
     <div class="slide slide-title active">
       <div class="content">
-        <div class="badge">WeAssist · June 16, 2026 · EOS Vision</div>
-        <div class="headline">Dev Team <em>2036 Vision</em></div>
-        <div class="meta">Mark Kenneth Badilla — AI & Automation</div>
-        <div class="pills">
-          <div class="pill accent">1,750 clients</div>
-          <div class="pill accent">5,000 OPs</div>
-          <div class="pill">4.0 OP:client ratio</div>
-          <div class="pill">$1M+ WSOS</div>
+        <div class="badge">WeAssist · June 16, 2026 · EOS Vision &amp; Traction</div>
+        <div class="headline">The <em>2036 Vision</em></div>
+        <div class="meta">Where WeAssist is going — and the engine that gets us there</div>
+        <div class="stats">
+          <div class="stat"><div class="big">1,750</div><div class="lbl">active clients</div></div>
+          <div class="stat"><div class="big">5,000</div><div class="lbl">operators (OPs)</div></div>
+          <div class="stat"><div class="big">4.0</div><div class="lbl">OP : client ratio</div><div class="from">from 2.67 today</div></div>
         </div>
       </div>
-      <div class="subtext">WeAssist exists to feed as many people around the world as humanly possible through equally advantageous opportunities.</div>
+      <div class="subtext">"WeAssist exists to feed as many people around the world as humanly possible through equally advantageous opportunities." — the mission, locked.</div>
     </div>
 
-    <!-- 1: Team Size -->
+    <!-- 1: Mission -->
     <div class="slide slide-q">
       <div class="visual-num">1</div>
+      <div class="content">
+        <div class="icon">🌍</div>
+        <div class="headline">One mission. <em>Felt everywhere.</em></div>
+        <div class="pills">
+          <div class="pill accent">Feed as many people as humanly possible</div>
+          <div class="pill">Through equally advantageous opportunities</div>
+          <div class="pill">&lt;2% applicant acceptance</div>
+          <div class="pill">A 90-day onboarding engine, not staffing</div>
+        </div>
+      </div>
+      <div class="subtext">Every OP we place feeds a family. That's the mission Reef locked on June 12 — and it's why this vision isn't one team's plan. The impact has to be felt across every department, not just where the work is built.</div>
+    </div>
+
+    <!-- 2: The 2036 numbers -->
+    <div class="slide slide-q">
+      <div class="visual-num">2</div>
+      <div class="content">
+        <div class="icon">📈</div>
+        <div class="headline">The number that <em>frames everything.</em></div>
+        <div class="stats">
+          <div class="stat"><div class="big">+45%</div><div class="lbl">client growth / yr</div></div>
+          <div class="stat"><div class="big">+46%</div><div class="lbl">OP growth / yr</div></div>
+          <div class="stat"><div class="big">4.0</div><div class="lbl">OP : client ratio</div><div class="from">up from 2.67</div></div>
+        </div>
+      </div>
+      <div class="subtext">By 2036: 1,750 clients and 5,000 OPs. Hitting it needs ~45% client and ~46% OP growth every year — and the ratio has to climb from 2.67 to 4.0. You don't get there by adding people. You get there by making each person carry more, through systems. That's the whole game.</div>
+    </div>
+
+    <!-- 3: The truth we're fixing -->
+    <div class="slide slide-q">
+      <div class="visual-num">3</div>
+      <div class="content">
+        <div class="icon">🩺</div>
+        <div class="headline">The honest <em>starting line.</em></div>
+        <div class="stats">
+          <div class="stat"><div class="big">~22%</div><div class="lbl">real monthly churn</div><div class="from">vs 98% retention claimed</div></div>
+          <div class="stat"><div class="big">~4.5mo</div><div class="lbl">to rebuild the client base</div></div>
+          <div class="stat"><div class="big">5%</div><div class="lbl">churn target</div></div>
+        </div>
+        <div class="pills">
+          <div class="pill warn">326 documented cancellation reasons</div>
+          <div class="pill">$2.5K to acquire → 1 rehire needs ~3 new clients</div>
+        </div>
+      </div>
+      <div class="subtext">Radical transparency: ground-truth churn is around 22% a month, not the 98% retention we market. At that rate the client base rebuilds every ~4.5 months, and every rehire burns the ~$2,500 acquisition cost again. Retention is the single highest-leverage number we have — and the 90-day onboarding program is the lever that moves 22% toward 5%.</div>
+    </div>
+
+    <!-- 4: Every department at scale -->
+    <div class="slide slide-q">
+      <div class="visual-num">4</div>
+      <div class="content">
+        <div class="icon">🏢</div>
+        <div class="headline">What every team looks like <em>at 5,000 OPs.</em></div>
+        <div class="grid">
+          <div class="card"><div class="ct">🎯 Recruitment</div><div class="cb">Candidate intake auto-structured from every job board; client–OP matching scored, not guessed (the Argus engine).</div></div>
+          <div class="card"><div class="ct">🤝 After-Sales</div><div class="cb">90-day evidence briefs auto-built; idle-OP and at-risk accounts flagged before they churn.</div></div>
+          <div class="card"><div class="ct">💵 Sales</div><div class="cb">Self-earning departments; premium $10K diagnostic and course revenue, not just sourcing fees.</div></div>
+          <div class="card"><div class="ct">📣 Marketing</div><div class="cb">Visibility engine — unified LinkedIn presence, content that actually reflects the 90-day product.</div></div>
+          <div class="card"><div class="ct">🧮 HR &amp; Finance</div><div class="cb">Scorecard auto-calculated from live data; payroll &amp; approvals governed, not hand-assembled.</div></div>
+          <div class="card"><div class="ct">⚙️ Dev &amp; AI</div><div class="cb">One AI-capable person embedded per department — the connective tissue under all of the above.</div></div>
+        </div>
+      </div>
+      <div class="subtext">Each department's break-room answered the same question — "what do we look like at 1,750 clients and 5,000 OPs?" — and every answer needs the same thing underneath it: clean data and automation. That's where Dev's impact stops being a Dev story and becomes the company's story.</div>
+    </div>
+
+    <!-- 5: Dev as the engine (preserve KP's sub-departments) -->
+    <div class="slide slide-q">
+      <div class="visual-num">5</div>
       <div class="content">
         <div class="icon">👥</div>
         <div class="headline">Small core. <em>AI everywhere.</em></div>
         <div class="pills">
           <div class="pill accent">4–6 core engineers</div>
-          <div class="pill">1 AI person per department</div>
-          <div class="pill">Headcount stays flat</div>
-          <div class="pill">Leverage via automation</div>
-          <div class="pill">50+ clients → Dev sub-departments</div>
+          <div class="pill accent">1 AI-capable person per department</div>
+          <div class="pill">Headcount stays flat — leverage via automation</div>
+        </div>
+        <div class="pills">
+          <div class="pill">At 50+ clients → Dev sub-departments:</div>
+          <div class="pill">QA testing</div>
+          <div class="pill">Full-stack dev</div>
+          <div class="pill">AI specialist</div>
+          <div class="pill">Business analyst</div>
         </div>
       </div>
-      <div class="subtext">We stay small — four to six core people — but by 2036 every department has at least one AI-capable person trained and supported by us. Growth comes from automation, not headcount. Once WSOS scales past 50+ clients, Dev specializes into sub-departments — QA testing, full-stack dev, AI specialist, business analyst.</div>
+      <div class="subtext">We stay deliberately small — four to six core people — but by 2036 every department has at least one AI-capable person we trained and support. Growth comes from automation, not headcount. And once we scale past 50+ clients, Dev itself specializes into sub-departments — KP's plan: QA testing, full-stack dev, AI specialist, business analyst.</div>
     </div>
 
-    <!-- 2: Contribution -->
+    <!-- 6: The platform / monetization (corrected WSOS framing, preserved ambition) -->
     <div class="slide slide-q">
-      <div class="visual-num">2</div>
+      <div class="visual-num">6</div>
       <div class="content">
         <div class="icon">🚀</div>
-        <div class="headline">Make WSOS a <em>$1M product.</em></div>
+        <div class="headline">From cost center to <em>product.</em></div>
         <div class="pills">
-          <div class="pill accent">WSOS → external product</div>
-          <div class="pill">Serves WeAssist clients & OPs</div>
-          <div class="pill accent">Agentic recruitment platform</div>
-          <div class="pill accent">AI agent marketplace for clients</div>
-          <div class="pill">Platform pays for itself</div>
+          <div class="pill accent">WeAssist = the proving ground for WorkStack OS</div>
+          <div class="pill">Every new client &amp; OP costs ~nothing extra to support</div>
+          <div class="pill accent">Agentic recruitment — cut hiring time, attract talent</div>
+          <div class="pill accent">AI agent marketplace — OPs get tasks done faster</div>
+          <div class="pill">Internal tools that can be SaaS-ified (Argus)</div>
         </div>
       </div>
-      <div class="subtext">Dev's job is to make every new client and OP cost almost nothing extra to support — and to take WSOS from an internal tool to a product that clients actually pay for. Two new lines: agentic recruitment to cut hiring time and attract more talent, and an AI agent marketplace so clients' OPs get tasks done faster. That's how we enable the 4.0 ratio.</div>
+      <div class="subtext">WorkStack OS is the offshore-team operating system — and WeAssist is its first, hardest customer. If our automations make WeAssist run at a 4.0 ratio, that's exactly what makes the platform sellable to everyone else. Two new lines push the ratio further: agentic recruitment to shrink hiring time, and an AI agent marketplace so clients' OPs deliver faster. The internal tools we build to survive become products other companies pay for.</div>
     </div>
 
-    <!-- 3: Build Now -->
+    <!-- 7: Build now -->
     <div class="slide slide-q">
-      <div class="visual-num">3</div>
+      <div class="visual-num">7</div>
       <div class="content">
         <div class="icon">🔧</div>
-        <div class="headline">SOPs. Tickets. <em>Live data.</em></div>
+        <div class="headline">What we build <em>now.</em></div>
         <div class="pills">
-          <div class="pill accent">108 SOPs → 36 active, automated</div>
-          <div class="pill accent">Off-track metric → auto ticket</div>
-          <div class="pill">Assigned owner · resolved in 1 week</div>
+          <div class="pill accent">Self-hosted Postgres on Hetzner — one source of truth</div>
+          <div class="pill accent">Nexus v2 — the AI-forward interface</div>
+          <div class="pill">Autobots v2 — transcription off AWS/Railway</div>
+          <div class="pill">Clean &amp; automate the SOP library</div>
+          <div class="pill accent">Off-track metric → auto-ticket → owner → resolved ≤ 1 week</div>
           <div class="pill">Zero hand-built reports</div>
         </div>
       </div>
-      <div class="subtext">Three things now: clean the SOPs and automate them, build a ticketing system so nothing falls through the cracks, and wire up data pipelines so no report is ever assembled manually again.</div>
+      <div class="subtext">Three things in flight right now: get the company onto one relational database instead of scattered spreadsheets, wire a ticketing loop so nothing falls through the cracks, and automate the SOPs and reports so no metric is ever assembled by hand again. Data integrity isn't a nice-to-have at 5,000 OPs — it's the only thing that makes the scale survivable.</div>
     </div>
 
-    <!-- 4: Success -->
+    <!-- 8: The efficiency proof -->
     <div class="slide slide-q">
-      <div class="visual-num">4</div>
+      <div class="visual-num">8</div>
       <div class="content">
-        <div class="icon">🎯</div>
-        <div class="headline">Zero manual work. <em>First $100K.</em></div>
+        <div class="icon">💸</div>
+        <div class="headline">Leverage you can <em>measure.</em></div>
+        <div class="stats">
+          <div class="stat"><div class="big">$62K</div><div class="lbl">/yr cost savings identified</div></div>
+          <div class="stat"><div class="big">$8.7K</div><div class="lbl">/yr · Canditech → AutoProctor</div></div>
+          <div class="stat"><div class="big">$609</div><div class="lbl">/mo · AI tools → Gemini</div></div>
+        </div>
         <div class="pills">
-          <div class="pill accent">$100K WSOS revenue before 2028</div>
-          <div class="pill accent">Every issue resolved ≤ 1 week</div>
-          <div class="pill">Scorecard scanned in 5 min/week</div>
-          <div class="pill">1,000th client = near-zero Dev effort</div>
+          <div class="pill">Autobots v2 retires usage-based AWS + Railway billing</div>
+          <div class="pill warn">LinkedIn / Teramind / Juicebox audits → $3.6K/mo more under review</div>
         </div>
       </div>
-      <div class="subtext">Success is measurable: no recurring reports built by hand, every off-track metric gets a ticket and an owner, and WSOS hits its first hundred thousand dollars externally before 2028. That's when we know it's real.</div>
+      <div class="subtext">This isn't theoretical. We've already mapped $62,000 a year in identified savings — invisible backend work that drops straight to margin without touching the client-facing tools the team loves. Every dollar saved and every hour automated is the same lever as the 4.0 ratio: more impact per person.</div>
     </div>
 
-    <!-- 5: Scorecard -->
+    <!-- 9: Scorecard & next steps -->
     <div class="slide slide-q">
-      <div class="visual-num">5</div>
+      <div class="visual-num">9</div>
       <div class="content">
         <div class="icon">📊</div>
-        <div class="headline">Auto-populated. <em>Plan first.</em></div>
+        <div class="headline">Plan first. <em>Then auto-populate.</em></div>
         <div class="pills">
-          <div class="pill accent">≤ 15 company metrics</div>
-          <div class="pill accent">Live data, no manual entry</div>
-          <div class="pill">Off-track → ticket (closed loop)</div>
-          <div class="pill">Grace + Eric lock targets by June 29</div>
+          <div class="pill accent">≤ 15 company metrics (EOS scorecard)</div>
+          <div class="pill">Scanned in 5 min/week — on-track or off</div>
+          <div class="pill">Off-track → Issues List (closed loop)</div>
+          <div class="pill accent">Targets locked by Grace + Eric before June 29</div>
+        </div>
+        <div class="pills">
+          <div class="pill">Next: June 22 — People Component (Mary Jane)</div>
+          <div class="pill">June 29 — Data Component (Mark &amp; KP)</div>
+          <div class="pill">Q3 Rocks — drafting now</div>
         </div>
       </div>
-      <div class="subtext">We're fully in. But we plan the 15 metrics before we build anything — once it's wired to live data, that's what the company runs on. After targets are locked, KP and I build it so it fills in automatically every week.</div>
+      <div class="subtext">We're fully in — but we plan the 15 metrics before we build anything, because once it's wired to live data, that's what the company runs on. After Grace and Eric lock the targets by June 29, KP and I build the scorecard so it fills itself in every week, with off-track metrics auto-routed to the Issues List.</div>
     </div>
 
-    <!-- 6: End -->
+    <!-- 10: End -->
     <div class="slide slide-end">
-      <div class="visual-num" style="font-size:clamp(8rem,22vw,16rem);top:0;right:16px;opacity:.07;">✓</div>
       <div class="content">
         <div class="icon">🌱</div>
-        <div class="headline">Build the system that <em>runs</em> WeAssist — then sell it.</div>
+        <div class="headline">Build the system that runs WeAssist — <em>then sell it.</em></div>
         <div class="pills">
-          <div class="pill">Next: June 29 — Data Component</div>
-          <div class="pill accent">Mark & KP present scorecard + ticketing</div>
+          <div class="pill accent">Next stop: June 29 — Data Component</div>
+          <div class="pill">Mark &amp; KP present scorecard + ticketing</div>
         </div>
       </div>
-      <div class="subtext">Dev Team · AI & Automation · 2026 → 2036</div>
+      <div class="subtext">2026 → 2036 · One mission, felt across every department.</div>
     </div>
 
   </div>
 
   <div class="nav">
-    <button id="prev" onclick="go(-1)" disabled>← Back</button>
+    <button id="prev" onclick="go(-1)">← Back</button>
     <div class="dots" id="dots"></div>
-    <button id="next" onclick="go(1)" class="primary">Next →</button>
+    <button id="next" class="primary" onclick="go(1)">Next →</button>
+    <span class="hint">← → arrow keys</span>
   </div>
 </div>
 
@@ -260,6 +362,7 @@
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
   });
+  document.getElementById('prev').disabled = true;
 </script>
 </body>
 </html>

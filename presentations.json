@@ -3,10 +3,10 @@
   "decks": [
     {
       "slug": "june-16-dev-team-vision",
-      "title": "Dev Team Vision 2036",
-      "summary": "Strategic roadmap: scaling WeAssist with a small AI-augmented core, monetizing WSOS, and driving toward zero manual work.",
+      "title": "WeAssist — The 2036 Vision",
+      "summary": "Full-company EOS vision: 1,750 clients & 5,000 OPs at a 4.0 ratio, the honest churn truth, and the AI/automation engine — across every department — that gets us there.",
       "date": "2026-06-16",
-      "tags": ["strategy", "dev team", "AI & automation"]
+      "tags": ["strategy", "EOS vision", "AI & automation"]
     },
     {
       "slug": "ai-dev-may-recap-and-cost-optimization",
