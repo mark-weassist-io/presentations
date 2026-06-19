@@ -1,0 +1,7 @@
+{
+  "_comment": "This repo holds static, full-screen presentation DECKS (self-contained HTML slideshows served via GitHub Pages). They are fixed-canvas artifacts shown on a monitor/projector — NOT responsive web apps. The Tier-4 mobile-responsiveness invariants are therefore N/A here.",
+  "drive": {
+    "artifactKind": "static-presentation",
+    "_comment": "Skips ONLY the 5 mobile invariants (overflow / element-overflow / tap-target / tiny-text / viewport-meta). Universal health/crash/redirect-loop invariants still run. Verify decks at presentation size (~1600x900), not phone widths."
+  }
+}
